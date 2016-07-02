@@ -31,6 +31,8 @@
     "ava": "^0.15.0",
     "chai": "^3.5.0",
     "coveralls": "^2.11.9",
+    "eslint": "^2.13.1",
+    "eslint-config-pedant": "^0.5.1",
     "nyc": "^6.4.4"
   },
   "scripts": {

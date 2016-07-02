@@ -6,21 +6,6 @@ const resolve = require('../../../../lib').resolve;
 
 const macro = require('../../../../lib/utils').depsMacro;
 
-test.skip('should not add tech to dependOn if dependency matching resolving tech', macro, {
-    graph: (linkMethod) => {
-        const graph = new BemGraph();
-
-        graph
-            .vertex({ block: 'A' }, 'css')
-            [linkMethod]({ block: 'B' }, 'css');
-
-        return graph;
-    },
-    test: (t, graph) => {
-        const decl = Array.from(graph.dependenciesOf([{ block: 'A' }, { block: 'B' }], 'css');
-    }
-});
-
 test('should not include entity if no entity from decl depends on it and this entity has dependency on entity' +
     ' listed in decl', macro, {
         graph: (linkMethod) => {
@@ -35,7 +20,7 @@ test('should not include entity if no entity from decl depends on it and this en
         test: (t, graph) => {
             const decl = Array.from(graph.dependenciesOf({ block: 'A' }, 'css');
 
-            expect(decl).not.to.contain({ block: 'B' });
+            expect(decl).not.to.contain({ entity: { block: 'B' }, tech: 'css' });
         }
 });
 
@@ -52,6 +37,6 @@ test('should not include dependency if no entity from decl\'s dependencies depen
     test: (t, graph) => {
         const decl = Array.from(graph.dependenciesOf({ block: 'A' }, 'css');
 
-        expect(decl).not.to.contain({ block: 'D' });
+        expect(decl).not.to.contain({ entity: { block: 'D' }, tech: 'css' });
     }
 });

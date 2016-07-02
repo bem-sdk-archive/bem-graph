@@ -6,49 +6,45 @@ const resolve = require('../../../../lib').resolve;
 const macro = require('../../../../lib/utils').depsMacro;
 
 test('should resolve transitive dependency', macro, {
-    decl: [{ block: 'A' }],
-    deps: [
-        {
-            entity: { block: 'A' },
-            dependOn: [
-                { entity: { block: 'B' } }
-            ]
-        },
-        {
-            entity: { block: 'B' },
-            dependOn: [
-                { entity: { block: 'C' } }
-            ]
-        }
-    ],
-    test: (t, decl, deps) => {
-        const resolved = resolve(decl, deps, { tech: 'css' });
+    graph: (linkMethod) => {
+        const graph = new BemGraph();
 
-        expect(resolved.entities).to.contain({ block: 'C' });
+        graph
+            .vertex({ block: 'A' })
+            [linkMethod]({ block: 'B' });
+
+        graph
+            .vertex({ block: 'B' })
+            [linkMethod]({ block: 'C' });
+
+        return graph;
+    },
+    test: (t, graph) => {
+        const decl = Array.from(graph.dependenciesOf({ block: 'A' }, 'css'));
+
+        expect(decl).to.contain({ entity: { block: 'C' }, tech: 'css' });
     }
 });
 
 test('should resolve transitive entity depending on multiple dependencies', macro, {
-    decl: [{ block: 'A' }],
-    deps: [
-        {
-            entity: { block: 'A' },
-            dependOn: [
-                { entity: { block: 'B' } }
-            ]
-        },
-        {
-            entity: { block: 'B' },
-            dependOn: [
-                { entity: { block: 'C' } },
-                { entity: { block: 'D' } }
-            ]
-        }
-    ],
-    test: (t, decl, deps) => {
-        const resolved = resolve(decl, deps, { tech: 'css' });
+    graph: (linkMethod) => {
+        const graph = new BemGraph();
 
-        expect(resolved.entities).to.contain({ block: 'C' })
-            .and.to.contain({ block: 'D' });
+        graph
+            .vertex({ block: 'A' })
+            [linkMethod]({ block: 'B' });
+
+        graph
+            .vertex({ block: 'B' })
+            [linkMethod]({ block: 'C' });
+            [linkMethod]({ block: 'D' });
+
+        return graph;
+    },
+    test: (t, graph) => {
+        const decl = Array.from(graph.dependenciesOf({ block: 'A' }, 'css'));
+
+        expect(decl).to.contain({ entity: { block: 'C' }, tech: 'css' })
+            .and.to.contain({ entity: { block: 'D' }, tech: 'css' });
     }
 });

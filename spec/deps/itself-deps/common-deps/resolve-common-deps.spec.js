@@ -17,8 +17,8 @@ test('should include entity once if entity depends on a', macro, {
         return graph;
     },
     test: (t, graph) => {
-        const decl = Array.from(graph.dependenciesOf({ block: 'A' });
+        const decl = Array.from(graph.dependenciesOf({ block: 'A' }));
 
-        expect(decl).to.be.eql([{ {entity: block: 'A' } }]);
+        expect(decl).to.be.eql([{ entity: { block: 'A' } }]);
     }
 });

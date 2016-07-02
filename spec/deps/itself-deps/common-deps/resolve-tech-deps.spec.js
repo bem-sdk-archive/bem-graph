@@ -2,9 +2,10 @@
 
 const test = require('ava');
 const expect = require('chai').expect;
-const resolve = require('../../../../lib').resolve;
 
-const macro = require('../../../../lib/utils').depsMacro;
+const lib = require('../../../..');
+const BemGraph = lib.BemGraph;
+const macro = lib.utils.depsMacro;
 
 test('should include entity once if entity depends on a', macro, {
     graph: (linkMethod) => {

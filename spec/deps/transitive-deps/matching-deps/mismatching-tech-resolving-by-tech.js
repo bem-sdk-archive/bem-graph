@@ -2,8 +2,12 @@
 
 const test = require('ava');
 const expect = require('chai').expect;
-const resolve = require('../../../../lib').resolve;
-const macro = require('../../../../lib/utils').depsMacro;
+
+const lib = require('../../../..');
+const BemGraph = lib.BemGraph;
+const macro = lib.utils.depsMacro;
+const findIndex = lib.utils.findIndex;
+const findLastIndex = lib.utils.findLastIndex;
 
 test('should not resolve transitive dependency', macro, {
     graph: (linkMethod) => {

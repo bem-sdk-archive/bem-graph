@@ -2,9 +2,10 @@
 
 const test = require('ava');
 const expect = require('chai').expect;
-const resolve = require('../../../../lib').resolve;
 
-const macro = require('../../../../lib/utils').depsMacro;
+const lib = require('../../../../lib');
+const BemGraph = lib.BemGraph;
+const macro = lib.utils.depsMacro;
 
 test('should not include entity if no entity from decl depends on it and this entity has dependency on entity' +
     ' listed in decl', macro, {
@@ -13,12 +14,12 @@ test('should not include entity if no entity from decl depends on it and this en
 
             graph
                 .vertex({ block: 'B' }, 'css')
-                [linkMethod]({ block: 'A' }, 'js');
+                [linkMethod]({ block: 'A' }, 'js'); // eslint-disable-line no-unexpected-multiline
 
             return graph;
         },
         test: (t, graph) => {
-            const decl = Array.from(graph.dependenciesOf({ block: 'A' }, 'css');
+            const decl = Array.from(graph.dependenciesOf({ block: 'A' }, 'css'));
 
             expect(decl).not.to.contain({ entity: { block: 'B' }, tech: 'css' });
         }
@@ -30,12 +31,12 @@ test('should not include dependency if no entity from decl\'s dependencies depen
 
         graph
             .vertex({ block: 'C' }, 'css')
-            [linkMethod]({ block: 'D' }, 'js');
+            [linkMethod]({ block: 'D' }, 'js'); // eslint-disable-line no-unexpected-multiline
 
         return graph;
     },
     test: (t, graph) => {
-        const decl = Array.from(graph.dependenciesOf({ block: 'A' }, 'css');
+        const decl = Array.from(graph.dependenciesOf({ block: 'A' }, 'css'));
 
         expect(decl).not.to.contain({ entity: { block: 'D' }, tech: 'css' });
     }

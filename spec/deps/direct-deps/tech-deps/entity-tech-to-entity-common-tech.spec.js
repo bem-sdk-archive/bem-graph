@@ -2,11 +2,12 @@
 
 const test = require('ava');
 const expect = require('chai').expect;
-const resolve = require('../../../../lib').resolve;
 
-const macro = require('../../../../lib/utils').depsMacro;
-const findIndex = require('../../../../lib/utils').findIndex;
-const findLastIndex = require('../../../../lib/utils').findLastIndex;
+const lib = require('../../../../lib');
+const BemGraph = lib.BemGraph;
+const macro = lib.utils.depsMacro;
+const findIndex = lib.utils.findIndex;
+const findLastIndex = lib.utils.findLastIndex;
 
 test('should resolve entity depending on another entity', macro, {
     graph: (linkMethod) => {
@@ -14,12 +15,12 @@ test('should resolve entity depending on another entity', macro, {
 
         graph
             .vertex({ block: 'A' }, 'css')
-            [linkMethod]({ block: 'B' });
+            [linkMethod]({ block: 'B' }); // eslint-disable-line no-unexpected-multiline
 
         return graph;
     },
     test: (t, graph) => {
-        const decl = Array.from(graph.dependenciesOf({ block: 'A' }, 'css');
+        const decl = Array.from(graph.dependenciesOf({ block: 'A' }, 'css'));
 
         expect(decl).to.contain({ entity: { block: 'B' }, tech: 'css' });
     }
@@ -31,13 +32,13 @@ test('should resolve entity depending on multiple entities', macro, {
 
         graph
             .vertex({ block: 'A' }, 'css')
-            [linkMethod]({ block: 'B' })
-            [linkMethod]({ block: 'C' });
+            [linkMethod]({ block: 'B' }) // eslint-disable-line no-unexpected-multiline
+            [linkMethod]({ block: 'C' }); // eslint-disable-line no-unexpected-multiline
 
         return graph;
     },
     test: (t, graph) => {
-        const decl = Array.from(graph.dependenciesOf({ block: 'A' }, 'css');
+        const decl = Array.from(graph.dependenciesOf({ block: 'A' }, 'css'));
 
         expect(decl).to.contain({ entity: { block: 'B' }, tech: 'css' })
             .to.contain({ entity: { block: 'C' }, tech: 'css' });
@@ -50,16 +51,16 @@ test('should resolve multiple techs in entity depending on another entity', macr
 
         graph
             .vertex({ block: 'A' }, 'css')
-            [linkMethod]({ block: 'B' });
+            [linkMethod]({ block: 'B' }); // eslint-disable-line no-unexpected-multiline
 
         graph
             .vertex({ block: 'A' }, 'js')
-            [linkMethod]({ block: 'B' });
+            [linkMethod]({ block: 'B' }); // eslint-disable-line no-unexpected-multiline
 
         return graph;
     },
     test: (t, graph) => {
-        const decl = Array.from(graph.dependenciesOf({ block: 'A' }, 'css');
+        const decl = Array.from(graph.dependenciesOf({ block: 'A' }, 'css'));
 
         expect(decl).to.contain({ entity: { block: 'B' }, tech: 'css' });
     }
@@ -71,16 +72,16 @@ test('should include entity to result once if multiple entities depend on this e
 
         graph
             .vertex({ block: 'A' }, 'css')
-            [linkMethod]({ block: 'C' });
+            [linkMethod]({ block: 'C' }); // eslint-disable-line no-unexpected-multiline
 
         graph
             .vertex({ block: 'B' }, 'css')
-            [linkMethod]({ block: 'C' });
+            [linkMethod]({ block: 'C' }); // eslint-disable-line no-unexpected-multiline
 
         return graph;
     },
     test: (t, graph) => {
-        const decl = Array.from(graph.dependenciesOf([{ block: 'A' }, { block: 'B' }], 'css');
+        const decl = Array.from(graph.dependenciesOf([{ block: 'A' }, { block: 'B' }], 'css'));
 
         const firstIndex = findIndex(decl, { entity: { block: 'C' }, tech: 'css' });
         const lastIndex = findLastIndex(decl, { entity: { block: 'C' }, tech: 'css' });

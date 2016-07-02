@@ -1,11 +1,11 @@
 'use strict';
 
 const test = require('ava');
-const expect = require('chai').expect;
 
-const resolve = require('../../../lib').resolve;
+const lib = require('../../../..');
+const BemGraph = lib.BemGraph;
 
-test('should resolve ordered dependencies independently for each declaration entity', () => {
+test('should resolve ordered dependencies independently for each declaration entity', t => {
     const graph = new BemGraph();
 
     graph
@@ -27,7 +27,7 @@ test('should resolve ordered dependencies independently for each declaration ent
     ]);
 });
 
-test('should resolve ordered dependencies independently of declaration entity', () => {
+test('should resolve ordered dependencies independently of declaration entity', t => {
     const graph = new BemGraph();
 
     graph

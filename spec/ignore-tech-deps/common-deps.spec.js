@@ -2,7 +2,9 @@
 
 const test = require('ava');
 const expect = require('chai').expect;
-const graph = new BemGraph();
+
+const lib = require('../../../..');
+const BemGraph = lib.BemGraph;
 
 test('should ignore unordered tech dependency on entity', () => {
     const graph = new BemGraph();
@@ -34,7 +36,7 @@ test('should ignore unordered tech dependency on another tech', () => {
 
     const decl = Array.from(graph.dependenciesOf({ block: 'A' }));
 
-    expect(decl).to.be.empty;
+    expect(decl).to.be.empty; // eslint-disable-line
 });
 
 test('should ignore tech deps when resolving common deps in same way for ordered and unordered deps', () => {
@@ -52,5 +54,5 @@ test('should ignore tech deps when resolving common deps in same way for ordered
     const declUnordered = Array.from(unorderedGraph.dependenciesOf({ block: 'A' }));
     const declOrdered = Array.from(orderedGraph.dependenciesOf({ block: 'A' }));
 
-    expect(declOrdered).to.be.deep.equal(resolvedUnordered);
+    expect(declOrdered).to.be.deep.equal(declUnordered);
 });

@@ -1,12 +1,12 @@
 'use strict';
 
 const test = require('ava');
-const expect = require('chai').expect;
 
-const BemGraph = require('../../lib/bem-graph');
-const findIndex = require('../../../lib/utils').findIndex;
+const lib = require('../../../..');
+const BemGraph = lib.BemGraph;
+const findIndex = lib.utils.findIndex;
 
-test('should keep the ordering described in decl', () => {
+test('should keep the ordering described in decl', t => {
     const graph = new BemGraph();
 
     const decl = graph.dependenciesOf([{ block: 'A' }, { block: 'B' }]);
@@ -16,7 +16,7 @@ test('should keep the ordering described in decl', () => {
     t.is(indexA < indexB);
 });
 
-test('should place entities described in decl before their dependencies', () => {
+test('should place entities described in decl before their dependencies', t => {
     const graph = new BemGraph();
 
     graph
@@ -30,7 +30,7 @@ test('should place entities described in decl before their dependencies', () => 
     t.is(indexA < indexB);
 });
 
-test('should not change decl order because of deps order', () => {
+test('should not change decl order because of deps order', t => {
     const graph = new BemGraph();
 
     graph

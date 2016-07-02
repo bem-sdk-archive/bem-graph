@@ -2,8 +2,10 @@
 
 const test = require('ava');
 const expect = require('chai').expect;
-const resolve = require('../../../../lib').resolve;
-const macro = require('../../../../lib/utils').depsMacro;
+
+const lib = require('../../../..');
+const BemGraph = lib.BemGraph;
+const macro = lib.utils.depsMacro;
 
 test('should resolve transitive dependency', macro, {
     graph: (linkMethod) => {
@@ -41,7 +43,7 @@ test('should resolve transitive depending on multiple dependencies', macro, {
 
         return graph;
     },
-    test: (t, decl, deps) => {
+    test: (t, graph) => {
         const decl = Array.from(graph.dependenciesOf({ block: 'A' }, 'css'));
 
         expect(decl).to.contain({ entity: { block: 'C' }, tech: 'css' })
@@ -64,7 +66,7 @@ test('should resolve transitive depending by multiple techs on another entity', 
 
         return graph;
     },
-    test: (t, decl, deps) => {
+    test: (t, graph) => {
         const decl = Array.from(graph.dependenciesOf({ block: 'A' }, 'css'));
 
         expect(decl).to.contain({ entity: { block: 'C' }, tech: 'css' });

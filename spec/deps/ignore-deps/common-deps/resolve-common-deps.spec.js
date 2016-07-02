@@ -2,12 +2,13 @@
 
 const test = require('ava');
 const expect = require('chai').expect;
-const resolve = require('../../../../lib').resolve;
 
-const macro = require('../../../../lib/utils').depsMacro;
+const lib = require('../../../../lib');
+const BemGraph = lib.BemGraph;
+const macro = lib.utils.depsMacro;
 
 test('should not include entity if no entity from decl depends on it', macro, {
-    graph: (linkMethod) => {
+    graph: () => {
         const graph = new BemGraph();
 
         graph.vertex({ block: 'B' });
@@ -15,7 +16,7 @@ test('should not include entity if no entity from decl depends on it', macro, {
         return graph;
     },
     test: (t, graph) => {
-        const decl = Array.from(graph.dependenciesOf({ block: 'A' });
+        const decl = Array.from(graph.dependenciesOf({ block: 'A' }));
 
         expect(decl).not.to.contain({ entity: { block: 'B' } });
     }
@@ -28,12 +29,12 @@ test('should not include entity if no entity from decl depends on it and this en
 
             graph
                 .vertex({ block: 'B' })
-                [linkMethod]({ block: 'A' });
+                [linkMethod]({ block: 'A' }); // eslint-disable-line no-unexpected-multiline
 
             return graph;
         },
         test: (t, graph) => {
-            const decl = Array.from(graph.dependenciesOf({ block: 'A' });
+            const decl = Array.from(graph.dependenciesOf({ block: 'A' }));
 
             expect(decl).not.to.contain({ entity: { block: 'B' } });
         }
@@ -45,12 +46,12 @@ test('should not include dependency if no entity from decl\'s dependencies depen
 
         graph
             .vertex({ block: 'C' })
-            [linkMethod]({ block: 'D' });
+            [linkMethod]({ block: 'D' }); // eslint-disable-line no-unexpected-multiline
 
         return graph;
     },
     test: (t, graph) => {
-        const decl = Array.from(graph.dependenciesOf({ block: 'A' });
+        const decl = Array.from(graph.dependenciesOf({ block: 'A' }));
 
         expect(decl).not.to.contain({ entity: { block: 'D' } });
     }

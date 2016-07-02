@@ -1,9 +1,10 @@
 'use strict';
 
 const test = require('ava');
-const expect = require('chai').expect;
-const resolve = require('../../../lib').resolve;
-const findIndex = require('../../../lib/utils').findIndex;
+
+const lib = require('../../../..');
+const BemGraph = lib.BemGraph;
+const findIndex = lib.utils.findIndex;
 
 test('should prioritise ordered dependency over block-element natural ordering', t => {
     const graph = new BemGraph();
@@ -27,7 +28,7 @@ test('should prioritise ordered dependency over block - boolean modifier natural
         .dependsOn({ block: 'A', modName: 'm', modVal: true });
 
     const decl = graph.dependenciesOf([{ block: 'B' }, { block: 'A', modName: 'm', modVal: true }]);
-    const indexBlock = findIndex(decl, { entity: { block: 'B' } }),
+    const indexBlock = findIndex(decl, { entity: { block: 'B' } });
     const indexModifier = findIndex(decl, { entity: { block: 'A', modName: 'm', modVal: true } });
 
     t.is(indexModifier < indexBlock);
@@ -75,7 +76,7 @@ test('should prioritise ordered dependency over element - element key-value modi
         { block: 'B', elem: 'e' },
         { block: 'A', elem: 'e', modName: 'm', modVal: 'val' }
     ]);
-    const indexElement = indexElement = findIndex(decl, { entity: { block: 'B', elem: 'e' } });
+    const indexElement = findIndex(decl, { entity: { block: 'B', elem: 'e' } });
     const indexModifier = findIndex(decl, { entity: { block: 'A', elem: 'e', modName: 'm', modVal: 'val' } });
 
     t.is(indexModifier < indexElement);
@@ -92,8 +93,8 @@ test('should prioritise ordered dependency over boolean modifier - key-value mod
         { block: 'B', modName: 'm', modVal: true },
         { block: 'A', modName: 'm', modVal: 'val' }
     ]);
-    const indexBoolean = findIndex(resolved.entities, { entity: { block: 'B', modName: 'm', modVal: true } });
-    const indexKeyValue = findIndex(resolved.entities, { entity: { block: 'A', modName: 'm', modVal: 'val' } });
+    const indexBoolean = findIndex(decl, { entity: { block: 'B', modName: 'm', modVal: true } });
+    const indexKeyValue = findIndex(decl, { entity: { block: 'A', modName: 'm', modVal: 'val' } });
 
     t.is(indexKeyValue < indexBoolean);
 });

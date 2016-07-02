@@ -1,10 +1,10 @@
 'use strict';
 
 const test = require('ava');
-const expect = require('chai').expect;
 
-const resolve = require('../../../lib').resolve;
-const findIndex = require('../../../lib/utils').findIndex;
+const lib = require('../../..');
+const BemGraph = lib.BemGraph;
+const findIndex = lib.utils.findIndex;
 
 test('should prioritise ordered dependency over decl recommended ordering', t => {
     const graph = new BemGraph();

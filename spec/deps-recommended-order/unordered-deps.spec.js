@@ -2,8 +2,10 @@
 
 const test = require('ava');
 const expect = require('chai').expect;
-const BemGraph = require('../../lib/bem-graph');
-const findIndex = require('../../../lib/utils').findIndex;
+
+const lib = require('../../..');
+const BemGraph = lib.BemGraph;
+const findIndex = lib.utils.findIndex;
 
 test('should keep the ordering described in deps', () => {
     const graph = new BemGraph();

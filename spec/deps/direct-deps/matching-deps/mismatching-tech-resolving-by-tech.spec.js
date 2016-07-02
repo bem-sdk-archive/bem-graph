@@ -5,7 +5,6 @@ const expect = require('chai').expect;
 const resolve = require('../../../../lib').resolve;
 
 const macro = require('../../../../lib/utils').depsMacro;
-const _ = require('lodash');
 const findIndex = require('../../../../lib/utils').findIndex;
 const findLastIndex = require('../../../../lib/utils').findLastIndex;
 

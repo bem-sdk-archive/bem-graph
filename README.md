@@ -3,7 +3,6 @@ bem-graph
 
 [![NPM Status][npm-img]][npm]
 [![Travis Status][test-img]][travis]
-[![Windows Status][appveyor-img]][appveyor]
 [![Coverage Status][coverage-img]][coveralls]
 [![Dependency Status][david-img]][david]
 
@@ -12,9 +11,6 @@ bem-graph
 
 [travis]:       https://travis-ci.org/bem-sdk/bem-graph
 [test-img]:     https://img.shields.io/travis/bem-sdk/bem-graph.svg?label=tests
-
-[appveyor]:     https://ci.appveyor.com/project/blond/bem-graph
-[appveyor-img]: http://img.shields.io/appveyor/ci/blond/bem-graph.svg?style=flat&label=windows
 
 [coveralls]:    https://coveralls.io/r/bem-sdk/bem-graph
 [coverage-img]: https://img.shields.io/coveralls/bem-sdk/bem-graph.svg
@@ -34,30 +30,40 @@ Usage
 
 ```js
 const BemGraph = require('bem-graph');
+
 const graph = new BemGraph();
 
-graph.node({ block: 'button' })
-    .addDependency({ block : 'i-bem', elems : 'dom' }, { ordered: true })
-    .addDependency({ block: 'control' })
-    .addDependency({ block: 'events' });
+graph.vertex({ block: 'attach' }, 'js')
+    .dependsOn({ block: 'button' }, 'bemhtml');
 
-graph.node({ block: 'control' })
-    .addDependency({ block : 'i-bem', elems : 'dom' }, { ordered: true })
-    .addDependency({ block: 'dom' })
-    .addDependency({ block: 'next-tick' })
-    .addDependency({ block : 'jquery', elem : 'event', mods : { type : 'pointer' } })
+graph.vertex({ block: 'button' })
+    .linkWith({ block: 'button', elem: 'text' });
 
-const dependencies = graph.dependenciesOf({ block: 'button' });
+graph.vertex({ block: 'textarea' }, 'css')
+    .dependsOn({ block: 'input' }, 'css');
 
-for (let entity of dependencies) {
-    console.log(entity);
-}
+const decl = [
+    { block: 'attach' },
+    { block: 'textarea' },
+    { block: 'button' }
+];
 
-// { entity: { block : 'i-bem', elems : 'dom' } }
-// { block: 'control' }
-// { block: 'events' }
-// { block: 'dom' }
-// { block: 'next-tick' }
+graph.dependenciesOf(decl, 'css');
+// [
+//     { entity: { block: 'attach' }, tech: 'css' },
+//     { entity: { block: 'textarea' }, tech: 'css' },
+//     { entity: { block: 'input' }, tech: 'css' },
+//     { entity: { block: 'button' }, tech: 'css' },
+//     { entity: { block: 'button', elem: 'text' }, tech: 'css' }
+// ]
+
+graph.dependenciesOf(decl, 'js');
+// [
+//     { entity: { block: 'button' }, tech: 'bemhtml' },
+//     { entity: { block: 'attach' }, tech: 'js' },
+//     { entity: { block: 'button', elem: 'text' }, tech: 'bemhtml' },
+//     { entity: { block: 'textarea' }, tech: 'js' }
+// ]
 ```
 
 License

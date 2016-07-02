@@ -20,7 +20,7 @@ test('should resolve entity depending on another entity', macro, {
         return graph;
     },
     test: (t, graph) => {
-        const decl = toArray(graph.dependenciesOf([{ block: 'A' }], 'css');
+        const decl = Array.from(graph.dependenciesOf([{ block: 'A' }], 'css');
 
         expect(decl).to.contain({ entity: { block: 'B' }, tech: 'js' });
     }
@@ -38,7 +38,7 @@ test('should resolve tech depending on multiple techs', macro, {
         return graph;
     },
     test: (t, graph) => {
-        const decl = toArray(graph.dependenciesOf([{ block: 'A' }], 'css');
+        const decl = Array.from(graph.dependenciesOf([{ block: 'A' }], 'css');
 
         expect(decl).to.contain({ entity: { block: 'B' }, tech: 'bemhtml' })
             .and.to.contain({ entity: { block: 'B' }, tech: 'js' });
@@ -60,7 +60,7 @@ test('should resolve tech dependency depending on tech different with resolving 
         return graph;
     },
     test: (t, graph) => {
-        const decl = toArray(graph.dependenciesOf([{ block: 'A' }], 'css');
+        const decl = Array.from(graph.dependenciesOf([{ block: 'A' }], 'css');
 
         expect(decl).to.contain({ entity: { block: 'C' }, tech: 'js' });
     }
@@ -82,7 +82,7 @@ test('should resolve tech dependency depending on tech different from resolving 
         return graph;
     },
     test: (t, graph) => {
-        const decl = toArray(graph.dependenciesOf({ block: 'A' }, 'css');
+        const decl = Array.from(graph.dependenciesOf({ block: 'A' }, 'css');
 
         expect(decl).to.contain({ entity: { block: 'C' }, tech: 'bemhtml' })
             .to.contain({ entity: { block: 'D' }, tech: 'js' });
@@ -105,7 +105,7 @@ test('should include tech to result once if tech of multiple entities depends on
             return graph;
         },
         test: (t, graph) => {
-            const decl = toArray(graph.dependenciesOf([{ block: 'A' }, { block: 'B' }], 'css');
+            const decl = Array.from(graph.dependenciesOf([{ block: 'A' }, { block: 'B' }], 'css');
 
             const firstIndex = findIndex(decl, { entity: { block: 'C' } });
             const lastIndex = findLastIndex(decl, { entity: { block: 'C' } });

@@ -17,7 +17,7 @@ test.skip('should not add tech to dependOn if dependency matching resolving tech
         return graph;
     },
     test: (t, graph) => {
-        const decl = toArray(graph.dependenciesOf([{ block: 'A' }, { block: 'B' }], 'css');
+        const decl = Array.from(graph.dependenciesOf([{ block: 'A' }, { block: 'B' }], 'css');
     }
 });
 
@@ -33,7 +33,7 @@ test('should not include entity if no entity from decl depends on it and this en
             return graph;
         },
         test: (t, graph) => {
-            const decl = toArray(graph.dependenciesOf({ block: 'A' }, 'css');
+            const decl = Array.from(graph.dependenciesOf({ block: 'A' }, 'css');
 
             expect(decl).not.to.contain({ block: 'B' });
         }
@@ -50,7 +50,7 @@ test('should not include dependency if no entity from decl\'s dependencies depen
         return graph;
     },
     test: (t, graph) => {
-        const decl = toArray(graph.dependenciesOf({ block: 'A' }, 'css');
+        const decl = Array.from(graph.dependenciesOf({ block: 'A' }, 'css');
 
         expect(decl).not.to.contain({ block: 'D' });
     }

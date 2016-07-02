@@ -13,7 +13,7 @@ test('should keep the ordering described in decl', () => {
     const indexA = findIndex(decl, { block: 'A' });
     const indexB = findIndex(decl, { block: 'B' });
 
-    expect(indexA).to.be.below(indexB);
+    t.is(indexA < indexB);
 });
 
 test('should place entities described in decl before their dependencies', () => {
@@ -27,7 +27,7 @@ test('should place entities described in decl before their dependencies', () => 
     const indexA = findIndex(decl, { block: 'A' });
     const indexB = findIndex(decl, { block: 'B' });
 
-    expect(indexB).to.be.above(indexA);
+    t.is(indexA < indexB);
 });
 
 test('should not change decl order because of deps order', () => {
@@ -41,5 +41,5 @@ test('should not change decl order because of deps order', () => {
     const indexA = findIndex(decl, { block: 'A' });
     const indexB = findIndex(decl, { block: 'B' });
 
-    expect(indexA).to.be.below(indexB);
+    t.is(indexA < indexB);
 });

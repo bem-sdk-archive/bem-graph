@@ -6,7 +6,7 @@ const MixedGraph = require('../../lib/mixed-graph');
 
 const createVertex = utils.createVertex;
 
-test.only('should return empty set if no successors', t => {
+test('should return empty set if no successors', t => {
     const graph = new MixedGraph();
     const vertex = createVertex({ block: 'button' });
 
@@ -15,7 +15,7 @@ test.only('should return empty set if no successors', t => {
     t.deepEqual(Array.from(successors), []);
 });
 
-test('should return successors for unordered graph', t => {
+test.only('should return successors for unordered graph', t => {
     const graph = new MixedGraph();
     const vertex1 = createVertex({ block: 'button' });
     const vertex2 = createVertex({ block: 'control' });
@@ -79,4 +79,30 @@ test('should return successors for mixed one-level graph (ordered first)', t => 
     const successors = graph.directSuccessors(vertex1);
 
     t.deepEqual(Array.from(successors), [vertex2, vertex3]);
+});
+
+test('should return successors for mixed one-level graph (ordered first)', t => {
+    const graph = new MixedGraph();
+    const vertex1 = createVertex({ block: 'attach' });
+    const vertex2 = createVertex({ block: 'button' });
+    const vertex3 = createVertex({ block: 'button' }, 'css');
+
+    graph.addEdge(vertex1, vertex2);
+    graph.addEdge(vertex1, vertex3);
+
+    const successors = graph.directSuccessors(vertex1);
+
+    t.deepEqual(Array.from(successors), [vertex2, vertex3]);
+});
+
+test('should return successors for mixed one-level graph (ordered first)', t => {
+    const graph = new MixedGraph();
+    const vertex1 = createVertex({ block: 'attach' }, 'css');
+    const vertex2 = createVertex({ block: 'button' });
+
+    graph.addEdge(vertex1, vertex2);
+
+    const successors = graph.directSuccessors(vertex1, { tech: 'css' });
+
+    t.deepEqual(Array.from(successors), [vertex2]);
 });

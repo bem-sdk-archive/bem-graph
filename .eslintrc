@@ -7,6 +7,3 @@ env:
   es6: true
 
 extends: pedant
-
-rules:
-  no-unexpected-multiline: 0

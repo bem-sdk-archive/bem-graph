@@ -36,7 +36,7 @@
     "sinon": "^1.17.4"
   },
   "scripts": {
-    "pretest": "eslint .",
+    "pretest": "eslint . && cd spec && eslint .",
     "test": "nyc ava",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },

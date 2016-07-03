@@ -6,6 +6,7 @@ const BemEntityName = require('bem-entity-name');
 
 const Vertex = require('../../lib/vertex');
 const DirectedGraph = require('../../lib/directed-graph');
+const MixedGraph = require('../../lib/mixed-graph');
 
 test('should return successors', t => {
     const graph = new DirectedGraph();

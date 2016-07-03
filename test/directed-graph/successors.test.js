@@ -5,7 +5,6 @@ const test = require('ava');
 const BemEntityName = require('bem-entity-name');
 
 const Vertex = require('../../lib/vertex');
-const VertexSet = require('../../lib/vertex-set');
 const DirectedGraph = require('../../lib/directed-graph');
 
 const vertex1 = new Vertex(new BemEntityName({ block: 'select' }));

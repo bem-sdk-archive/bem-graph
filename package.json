@@ -27,17 +27,17 @@
     "spread-args": "^0.2.0"
   },
   "devDependencies": {
-    "ava": "^0.15.0",
+    "ava": "^0.15.2",
     "chai": "^3.5.0",
     "coveralls": "^2.11.9",
-    "eslint": "^2.13.1",
-    "eslint-config-pedant": "^0.5.1",
-    "nyc": "^6.4.4"
+    "eslint": "^3.0.0",
+    "eslint-config-pedant": "^0.6.0",
+    "nyc": "^6.6.1",
+    "sinon": "^1.17.4"
   },
   "scripts": {
-    "pretest": "npm run lint",
+    "pretest": "eslint .",
     "test": "nyc ava",
-    "lint": "jshint . && jscs . -c .jscs.js",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "ava": {

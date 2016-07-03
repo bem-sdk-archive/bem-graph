@@ -82,7 +82,6 @@ test('should add edge to created subgraph', t => {
     mixedGraph.addEdge(vertex1, vertex2, { ordered: false, tech: 'css' });
 
     const subgraph = mixedGraph._unorderedGraphMap.get('css');
-    const addEdgeSpy = sinon.spy(subgraph, 'addEdge');
 
     t.true(subgraph.hasVertex(vertex1));
     t.true(subgraph.hasVertex(vertex2));

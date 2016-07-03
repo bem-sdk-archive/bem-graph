@@ -1,7 +1,6 @@
 'use strict';
 
 const test = require('ava');
-const sinon = require('sinon');
 
 const DirectedGraph = require('../../lib/directed-graph');
 const MixedGraph = require('../../lib/mixed-graph');

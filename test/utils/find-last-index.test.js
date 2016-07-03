@@ -2,7 +2,7 @@
 
 const test = require('ava');
 
-const findLastIndex = require('../../lib/utils').findLastIndex;
+const findLastIndex = utils.findLastIndex;
 
 test('should not find non existing block', t => {
     var decl = [{ block: 'block' }];

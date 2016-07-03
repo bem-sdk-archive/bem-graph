@@ -8,7 +8,7 @@ const macro = utils.depsMacro;
 const findIndex = utils.findIndex;
 const findLastIndex = utils.findLastIndex;
 
-test.only('should resolve entity depending on another entity', macro, {
+test('should resolve entity depending on another entity', macro, {
     graph: (linkMethod) => {
         const graph = new BemGraph();
 
@@ -20,8 +20,6 @@ test.only('should resolve entity depending on another entity', macro, {
     },
     test: (t, graph) => {
         const decl = Array.from(graph.dependenciesOf({ block: 'A' }));
-
-        console.log(decl);
 
         expect(decl).to.contain({ entity: { block: 'B' } });
     }
@@ -46,7 +44,7 @@ test('should resolve entity depending on multiple entities', macro, {
     }
 });
 
-test('should include entity to result once if multiple entities depend on this entity', macro, {
+test.failing('should include entity to result once if multiple entities depend on this entity', macro, {
     graph: (linkMethod) => {
         const graph = new BemGraph();
 

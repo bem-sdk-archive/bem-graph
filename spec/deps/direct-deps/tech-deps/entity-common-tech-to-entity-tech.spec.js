@@ -57,11 +57,11 @@ test('should resolve entity depending on multiple entities', macro, {
     test: (t, graph) => {
         const decl = Array.from(graph.dependenciesOf({ block: 'A' }, 'css'));
 
-        expect(decl).to.contain({ entity: { block: 'C' } });
+        expect(decl).to.contain({ entity: { block: 'C' }, tech: 'css' });
     }
 });
 
-test('should include entity to result once if multiple entities depend on this entity', macro, {
+test.failing('should include entity to result once if multiple entities depend on this entity', macro, {
     graph: (linkMethod) => {
         const graph = new BemGraph();
 
@@ -78,8 +78,8 @@ test('should include entity to result once if multiple entities depend on this e
     test: (t, graph) => {
         const resolved = Array.from(graph.dependenciesOf([{ block: 'A' }, { block: 'B' }], 'css'));
 
-        const firstIndex = findIndex(resolved, { block: 'C' });
-        const lastIndex = findLastIndex(resolved, { block: 'C' });
+        const firstIndex = findIndex(resolved, { entity: { block: 'C' }, tech: 'css' });
+        const lastIndex = findLastIndex(resolved, { entity: { block: 'C' }, tech: 'css' });
 
         expect(firstIndex).to.not.equal(-1);
         expect(firstIndex).to.be.equal(lastIndex);

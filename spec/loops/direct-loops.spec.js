@@ -32,7 +32,7 @@ test('should not throw error if detected unordered direct loop with ordered part
     t.notThrows(() => graph.dependenciesOf({ block: 'A' }));
 });
 
-test.only('should throw error if detected ordered direct loop', t => {
+test('should throw error if detected ordered direct loop', t => {
     const graph = new BemGraph();
 
     graph

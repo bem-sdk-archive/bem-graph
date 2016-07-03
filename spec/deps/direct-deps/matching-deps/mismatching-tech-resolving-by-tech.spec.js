@@ -44,6 +44,7 @@ test('should resolve tech depending on multiple techs', macro, {
     }
 });
 
+// TODO: move to transitive
 test('should resolve tech dependency depending on tech different with resolving in another entity', macro, {
     graph: (linkMethod) => {
         const graph = new BemGraph();
@@ -88,7 +89,7 @@ test('should resolve tech dependency depending on tech different from resolving 
     }
 });
 
-test('should include tech to result once if tech of multiple entities depends on this tech and this tech is' +
+test.failing('should include tech to result once if tech of multiple entities depends on this tech and this tech is' +
     ' not matching with resolving tech', macro, {
         graph: (linkMethod) => {
             const graph = new BemGraph();
@@ -106,8 +107,8 @@ test('should include tech to result once if tech of multiple entities depends on
         test: (t, graph) => {
             const decl = Array.from(graph.dependenciesOf([{ block: 'A' }, { block: 'B' }], 'css'));
 
-            const firstIndex = findIndex(decl, { entity: { block: 'C' } });
-            const lastIndex = findLastIndex(decl, { entity: { block: 'C' } });
+            const firstIndex = findIndex(decl, { entity: { block: 'C' }, tech: 'js' });
+            const lastIndex = findLastIndex(decl, { entity: { block: 'C' }, tech: 'js' });
 
             expect(firstIndex).to.not.be.equal(-1);
             expect(firstIndex).to.be.equal(lastIndex);

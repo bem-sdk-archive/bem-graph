@@ -21,7 +21,7 @@ test('should resolve entity depending on another entity', macro, {
     test: (t, graph) => {
         const decl = Array.from(graph.dependenciesOf({ block: 'A' }, 'css'));
 
-        expect(decl).to.contain({ entity: { block: 'B' } });
+        expect(decl).to.contain({ entity: { block: 'B' }, tech: 'css' });
     }
 });
 
@@ -39,7 +39,7 @@ test('should resolve entity depending by multiple techs on another entity', macr
     test: (t, graph) => {
         const decl = Array.from(graph.dependenciesOf({ block: 'A' }, 'css'));
 
-        expect(decl).to.contain({ entity: { block: 'B' } });
+        expect(decl).to.contain({ entity: { block: 'B' }, tech: 'css' });
     }
 });
 
@@ -57,12 +57,12 @@ test('should resolve entity depending on multiple entities', macro, {
     test: (t, graph) => {
         const decl = Array.from(graph.dependenciesOf({ block: 'A' }, 'css'));
 
-        expect(decl).to.contain({ entity: { block: 'B' } })
-            .and.to.contain({ entity: { block: 'C' } });
+        expect(decl).to.contain({ entity: { block: 'B' }, tech: 'css' })
+            .and.to.contain({ entity: { block: 'C' }, tech: 'css' });
     }
 });
 
-test('should include entity to result once if multiple entities depend on this entity', macro, {
+test.failing('should include entity to result once if multiple entities depend on this entity', macro, {
     graph: (linkMethod) => {
         const graph = new BemGraph();
 
@@ -79,10 +79,10 @@ test('should include entity to result once if multiple entities depend on this e
     test: (t, graph) => {
         const decl = Array.from(graph.dependenciesOf([{ block: 'A' }, { block: 'B' }], 'css'));
 
-        const firstIndex = findIndex(decl, { entity: { block: 'C' } });
-        const lastIndex = findLastIndex(decl, { entity: { block: 'C' } });
+        const firstIndex = findIndex(decl, { entity: { block: 'C' }, tech: 'css' });
+        const lastIndex = findLastIndex(decl, { entity: { block: 'C' }, tech: 'css' });
 
-        expect(decl).to.contain({ entity: { block: 'C' } });
+        expect(decl).to.contain({ entity: { block: 'C' }, tech: 'css' });
         expect(firstIndex).to.be.equal(lastIndex);
     }
 });

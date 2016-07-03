@@ -3,13 +3,12 @@
 const test = require('ava');
 const expect = require('chai').expect;
 
-
 const BemGraph = lib.BemGraph;
 const macro = utils.depsMacro;
 const findIndex = utils.findIndex;
 const findLastIndex = utils.findLastIndex;
 
-test('should resolve entity depending on another entity', macro, {
+test.only('should resolve entity depending on another entity', macro, {
     graph: (linkMethod) => {
         const graph = new BemGraph();
 
@@ -21,6 +20,8 @@ test('should resolve entity depending on another entity', macro, {
     },
     test: (t, graph) => {
         const decl = Array.from(graph.dependenciesOf({ block: 'A' }));
+
+        console.log(decl);
 
         expect(decl).to.contain({ entity: { block: 'B' } });
     }

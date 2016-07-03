@@ -24,7 +24,7 @@
     "bem-naming": "1.0.1",
     "es6-error": "3.0.0",
     "hash-set": "1.0.0",
-    "ho-iter": "blond/ho-iter",
+    "ho-iter": "blond/ho-iter#wip",
     "spread-args": "0.2.0"
   },
   "devDependencies": {

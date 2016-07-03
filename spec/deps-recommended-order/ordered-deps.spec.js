@@ -3,7 +3,6 @@
 const test = require('ava');
 const expect = require('chai').expect;
 
-
 const BemGraph = lib.BemGraph;
 const findIndex = utils.findIndex;
 

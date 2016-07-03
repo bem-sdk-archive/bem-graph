@@ -5,9 +5,9 @@ const test = require('ava');
 const findIndex = utils.findIndex;
 
 test('should not find non existing block', t => {
-    var decl = [{ entity: block: 'block' } }];
+    const decl = [{ entity: { block: 'block' } }];
 
-    t.is(findIndex(decl, { entity:{ block: 'other-block' } }), -1);
+    t.is(findIndex(decl, { entity: { block: 'other-block' } }), -1);
 });
 
 test('should not find non bem block', t => {
@@ -15,35 +15,35 @@ test('should not find non bem block', t => {
 });
 
 test('should find block', t => {
-    var entity = { entity: { block: 'block' } },
-        decl = [entity];
+    const entity = { entity: { block: 'block' } };
+    const decl = [entity];
 
     t.is(findIndex(decl, entity), 0);
 });
 
 test('should find modifier of block', t => {
-    var entity = { entity:{ block: 'block', modName: 'mod', modVal: 'val' } },
-        decl = [entity];
+    const entity = { entity:{ block: 'block', modName: 'mod', modVal: 'val' } };
+    const decl = [entity];
 
     t.is(findIndex(decl, entity), 0);
 });
 
 test('should find element', t => {
-    var entity = { entity: { block: 'block', elem: 'elem' } },
-        decl = [entity];
+    const entity = { entity: { block: 'block', elem: 'elem' } };
+    const decl = [entity];
 
     t.is(findIndex(decl, entity), 0);
 });
 
 test('should find modifier of element', t => {
-    var entity = { entity: { block: 'block', elem: 'elem', modName: 'mod', modVal: 'val' } },
-        decl = [entity];
+    const entity = { entity: { block: 'block', elem: 'elem', modName: 'mod', modVal: 'val' } };
+    const decl = [entity];
 
     t.is(findIndex(decl, entity), 0);
 });
 
 test('should find equal entity', t => {
-    var decl = [
+    const decl = [
         { entity: { block: 'other-block' } },
         { entity: { block: 'block' } },
         { entity: { block: 'other-block' } }
@@ -57,7 +57,7 @@ test('should find equal entity by other object', t => {
 });
 
 test('should find first equal entity', t => {
-    var decl = [
+    const decl = [
         { entity: { block: 'block' } },
         { entity: { block: 'other-block' } },
         { entity: { block: 'block' } }

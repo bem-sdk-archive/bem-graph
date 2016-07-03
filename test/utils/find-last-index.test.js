@@ -5,9 +5,9 @@ const test = require('ava');
 const findLastIndex = utils.findLastIndex;
 
 test('should not find non existing block', t => {
-    var decl = [{ block: 'block' }];
+    var decl = [{ entity: { block: 'block' } }];
 
-    t.is(findLastIndex(decl, { block: 'other-block' }), -1);
+    t.is(findLastIndex(decl, { entity: { block: 'other-block' } }), -1);
 });
 
 test('should not find non bem block', t => {
@@ -15,45 +15,53 @@ test('should not find non bem block', t => {
 });
 
 test('should find block', t => {
-    var entity = { block: 'block' },
+    var entity = { entity: { block: 'block' } },
         decl = [entity];
 
     t.is(findLastIndex(decl, entity), 0);
 });
 
 test('should find modifier of block', t => {
-    var entity = { block: 'block', modName: 'mod', modVal: 'val' },
+    var entity = { entity: { block: 'block', modName: 'mod', modVal: 'val' } },
         decl = [entity];
 
     t.is(findLastIndex(decl, entity), 0);
 });
 
 test('should find element', t => {
-    var entity = { block: 'block', elem: 'elem' },
+    var entity = { entity: { block: 'block', elem: 'elem' } },
         decl = [entity];
 
     t.is(findLastIndex(decl, entity), 0);
 });
 
 test('should find modifier of element', t => {
-    var entity = { block: 'block', elem: 'elem', modName: 'mod', modVal: 'val' },
+    var entity = { entity: { block: 'block', elem: 'elem', modName: 'mod', modVal: 'val' } },
         decl = [entity];
 
     t.is(findLastIndex(decl, entity), 0);
 });
 
 test('should find equal entity', t => {
-    var decl = [{ block: 'other-block' }, { block: 'block' }, { block: 'other-block' }];
+    var decl = [
+        { entity: { block: 'other-block' } },
+        { entity: { block: 'block' } },
+        { entity: { block: 'other-block' } }
+    ];
 
-    t.is(findLastIndex(decl, { block: 'block' }), 1);
+    t.is(findLastIndex(decl, { entity: { block: 'block' } }), 1);
 });
 
 test('should find equal block by other object', t => {
-    t.is(findLastIndex([{ block: 'block' }], { block: 'block' }), 0);
+    t.is(findLastIndex([{ entity: { block: 'block' } }], { entity: { block: 'block' } }), 0);
 });
 
 test('should find last equal entity', t => {
-    var decl = [{ block: 'block' }, { block: 'other-block' }, { block: 'block' }];
+    var decl = [
+        { entity: { block: 'block' } },
+        { entity: { block: 'other-block' } },
+        { entity: { block: 'block' } }
+    ];
 
-    t.is(findLastIndex(decl, { block: 'block' }), 2);
+    t.is(findLastIndex(decl, { entity: { block: 'block' } }), 2);
 });

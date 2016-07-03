@@ -89,14 +89,14 @@ test('should return successors with tech', t => {
     t.deepEqual(Array.from(successors), [vertex2, vertex3]);
 });
 
-test.only('should return successors for mixed one-level  graph (ordered first)', t => {
+test('should return successors for mixed one-level  graph (ordered first)', t => {
     const graph = new MixedGraph();
     const vertex1 = createVertex({ block: 'attach' }, 'css');
     const vertex2 = createVertex({ block: 'button' });
 
     graph.addEdge(vertex1, vertex2);
 
-    const successors = graph.directSuccessors(vertex1);
+    const successors = graph.directSuccessors(vertex1, { tech: 'css' });
 
     t.deepEqual(Array.from(successors), [vertex2]);
 });

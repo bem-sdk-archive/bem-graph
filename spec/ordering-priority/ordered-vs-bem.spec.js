@@ -16,7 +16,7 @@ test('should prioritise ordered dependency over block-element natural ordering',
     const indexBlock = findIndex(decl, { entity: { block: 'B' } });
     const indexElement = findIndex(decl, { entity: { block: 'A', elem: 'e' } });
 
-    t.is(indexElement < indexBlock);
+    t.true(indexElement < indexBlock);
 });
 
 test('should prioritise ordered dependency over block - boolean modifier natural ordering', t => {
@@ -30,7 +30,7 @@ test('should prioritise ordered dependency over block - boolean modifier natural
     const indexBlock = findIndex(decl, { entity: { block: 'B' } });
     const indexModifier = findIndex(decl, { entity: { block: 'A', modName: 'm', modVal: true } });
 
-    t.is(indexModifier < indexBlock);
+    t.true(indexModifier < indexBlock);
 });
 
 test('should prioritise ordered dependency over block - key-value modifier natural ordering', t => {
@@ -44,7 +44,7 @@ test('should prioritise ordered dependency over block - key-value modifier natur
     const indexBlock = findIndex(decl, { entity: { block: 'B' } });
     const indexModifier = findIndex(decl, { entity: { block: 'A', modName: 'm', modVal: 'val' } });
 
-    t.is(indexModifier < indexBlock);
+    t.true(indexModifier < indexBlock);
 });
 
 test('should prioritise ordered dependency over element - element boolean modifier natural ordering', t => {
@@ -61,7 +61,7 @@ test('should prioritise ordered dependency over element - element boolean modifi
     const indexElement = findIndex(decl, { entity: { block: 'B', elem: 'e' } });
     const indexModifier = findIndex(decl, { entity: { block: 'A', elem: 'e', modName: 'm', modVal: true } });
 
-    t.is(indexModifier < indexElement);
+    t.true(indexModifier < indexElement);
 });
 
 test('should prioritise ordered dependency over element - element key-value modifier natural ordering', t => {
@@ -69,7 +69,7 @@ test('should prioritise ordered dependency over element - element key-value modi
 
     graph
         .vertex({ block: 'B', elem: 'e' })
-        .dependsOn({ block: 'A', elem: 'e', modName: 'm', modVal: true });
+        .dependsOn({ block: 'A', elem: 'e', modName: 'm', modVal: 'val' });
 
     const decl = graph.dependenciesOf([
         { block: 'B', elem: 'e' },
@@ -78,7 +78,7 @@ test('should prioritise ordered dependency over element - element key-value modi
     const indexElement = findIndex(decl, { entity: { block: 'B', elem: 'e' } });
     const indexModifier = findIndex(decl, { entity: { block: 'A', elem: 'e', modName: 'm', modVal: 'val' } });
 
-    t.is(indexModifier < indexElement);
+    t.true(indexModifier < indexElement);
 });
 
 test('should prioritise ordered dependency over boolean modifier - key-value modifier natural ordering', t => {
@@ -95,5 +95,5 @@ test('should prioritise ordered dependency over boolean modifier - key-value mod
     const indexBoolean = findIndex(decl, { entity: { block: 'B', modName: 'm', modVal: true } });
     const indexKeyValue = findIndex(decl, { entity: { block: 'A', modName: 'm', modVal: 'val' } });
 
-    t.is(indexKeyValue < indexBoolean);
+    t.true(indexKeyValue < indexBoolean);
 });

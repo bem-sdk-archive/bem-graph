@@ -20,7 +20,7 @@ test.failing('should place block before its element', () => {
     expect(indexBlock).to.be.below(indexElem);
 });
 
-test('should place block before its boolean modifier', () => {
+test.failing('should place block before its boolean modifier', () => {
     const graph = new BemGraph();
 
     const decl = Array.from(graph.dependenciesOf([

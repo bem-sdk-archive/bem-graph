@@ -37,7 +37,7 @@ test('should resolve transitive entity depending on multiple dependencies', macr
 
         graph
             .vertex({ block: 'B' }, 'css')
-            [linkMethod]({ block: 'C' }, 'css');
+            [linkMethod]({ block: 'C' }, 'css')
             [linkMethod]({ block: 'D' }, 'css');
 
         return graph;
@@ -60,7 +60,7 @@ test('should resolve transitive depending by multiple techs on another entity', 
 
         graph
             .vertex({ block: 'B' }, 'css')
-            [linkMethod]({ block: 'C' }, 'css');
+            [linkMethod]({ block: 'C' }, 'css')
             [linkMethod]({ block: 'C' }, 'js');
 
         return graph;

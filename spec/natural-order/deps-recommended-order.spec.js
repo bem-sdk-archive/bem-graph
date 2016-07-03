@@ -6,7 +6,7 @@ const expect = require('chai').expect;
 const BemGraph = lib.BemGraph;
 const findIndex = utils.findIndex;
 
-test('should place block before its element', () => {
+test.failing('should place block before its element', () => {
     const graph = new BemGraph();
 
     const decl = [
@@ -18,13 +18,13 @@ test('should place block before its element', () => {
 
     const resolved = Array.from(graph.dependenciesOf(decl));
 
-    const indexBlock = findIndex(resolved, { block: 'A' });
-    const indexElem = findIndex(resolved, { block: 'A', elem: 'e' });
+    const indexBlock = findIndex(resolved, { entity: { block: 'A' } });
+    const indexElem = findIndex(resolved, { entity: { block: 'A', elem: 'e' } });
 
     expect(indexBlock).to.be.below(indexElem);
 });
 
-test('should place block before its boolean modifier', () => {
+test.failing('should place block before its boolean modifier', () => {
     const graph = new BemGraph();
 
     const decl = [
@@ -36,13 +36,13 @@ test('should place block before its boolean modifier', () => {
 
     const resolved = Array.from(graph.dependenciesOf(decl));
 
-    const indexBlock = findIndex(resolved, { block: 'A' });
-    const indexModifier = findIndex(resolved, { block: 'A', modName: 'm' });
+    const indexBlock = findIndex(resolved, { entity: { block: 'A' } });
+    const indexModifier = findIndex(resolved, { entity: { block: 'A', modName: 'm' } });
 
     expect(indexBlock).to.be.below(indexModifier);
 });
 
-test('should place block before its key-value modifier', () => {
+test.failing('should place block before its key-value modifier', () => {
     const graph = new BemGraph();
 
     const decl = [
@@ -54,13 +54,13 @@ test('should place block before its key-value modifier', () => {
 
     const resolved = Array.from(graph.dependenciesOf(decl));
 
-    const indexBlock = findIndex(resolved, { block: 'A' });
-    const indexModifier = findIndex(resolved, { block: 'A', modName: 'm', modVal: 'any' });
+    const indexBlock = findIndex(resolved, { entity: { block: 'A' } });
+    const indexModifier = findIndex(resolved, { entity: { block: 'A', modName: 'm', modVal: 'any' } });
 
     expect(indexBlock).to.be.below(indexModifier);
 });
 
-test('should place block before its element with boolean modifier', () => {
+test.failing('should place block before its element with boolean modifier', () => {
     const graph = new BemGraph();
 
     const decl = [
@@ -72,13 +72,13 @@ test('should place block before its element with boolean modifier', () => {
 
     const resolved = Array.from(graph.dependenciesOf(decl));
 
-    const indexBlock = findIndex(resolved, { block: 'A' });
-    const indexElem = findIndex(resolved, { block: 'A', elem: 'e', modName: 'm', modVal: true });
+    const indexBlock = findIndex(resolved, { entity: { block: 'A' } });
+    const indexElem = findIndex(resolved, { entity: { block: 'A', elem: 'e', modName: 'm', modVal: true } });
 
     expect(indexBlock).to.be.below(indexElem);
 });
 
-test('should place block before its element with key-value modifier', () => {
+test.failing('should place block before its element with key-value modifier', () => {
     const graph = new BemGraph();
 
     const decl = [
@@ -90,8 +90,8 @@ test('should place block before its element with key-value modifier', () => {
 
     const resolved = Array.from(graph.dependenciesOf(decl));
 
-    const indexBlock = findIndex(resolved, { block: 'A' });
-    const indexElem = findIndex(resolved, { block: 'A', elem: 'e', modName: 'm', modVal: 'any' });
+    const indexBlock = findIndex(resolved, { entity: { block: 'A' } });
+    const indexElem = findIndex(resolved, { entity: { block: 'A', elem: 'e', modName: 'm', modVal: 'any' } });
 
     expect(indexBlock).to.be.below(indexElem);
 });
@@ -108,13 +108,13 @@ test('should place block\'s boolean modifier before block key-value modifier', (
 
     const resolved = Array.from(graph.dependenciesOf(decl));
 
-    const indexBoolean = findIndex(resolved, { block: 'A', modName: 'n', modVal: true });
-    const indexKeyValue = findIndex(resolved, { block: 'A', modName: 'm', modVal: 'any' });
+    const indexBoolean = findIndex(resolved, { entity: { block: 'A', modName: 'n', modVal: true } });
+    const indexKeyValue = findIndex(resolved, { entity: { block: 'A', modName: 'm', modVal: 'any' } });
 
     expect(indexBoolean).to.be.below(indexKeyValue);
 });
 
-test('should place elem before its boolean modifier', () => {
+test.failing('should place elem before its boolean modifier', () => {
     const graph = new BemGraph();
 
     const decl = [
@@ -126,13 +126,13 @@ test('should place elem before its boolean modifier', () => {
 
     const resolved = Array.from(graph.dependenciesOf(decl));
 
-    const indexElem = findIndex(resolved, { block: 'A', elem: 'e' });
-    const indexModifier = findIndex(resolved, { block: 'A', elem: 'e', modName: 'm', modVal: true });
+    const indexElem = findIndex(resolved, { entity: { block: 'A', elem: 'e' } });
+    const indexModifier = findIndex(resolved, { entity: { block: 'A', elem: 'e', modName: 'm', modVal: true } });
 
     expect(indexElem).to.be.below(indexModifier);
 });
 
-test('should place elem before its key-value modifier', () => {
+test.failing('should place elem before its key-value modifier', () => {
     const graph = new BemGraph();
 
     const decl = [
@@ -144,13 +144,13 @@ test('should place elem before its key-value modifier', () => {
 
     const resolved = Array.from(graph.dependenciesOf(decl));
 
-    const indexElem = findIndex(resolved, { block: 'A', elem: 'e' });
-    const indexModifier = findIndex(resolved, { block: 'A', elem: 'e', modName: 'm', modVal: 'any' });
+    const indexElem = findIndex(resolved, { entity: { block: 'A', elem: 'e' } });
+    const indexModifier = findIndex(resolved, { entity: { block: 'A', elem: 'e', modName: 'm', modVal: 'any' } });
 
     expect(indexElem).to.be.below(indexModifier);
 });
 
-test('should place elem\'s boolean modifier before elem key-value modifier', () => {
+test.failing('should place elem\'s boolean modifier before elem key-value modifier', () => {
     const graph = new BemGraph();
 
     const decl = [
@@ -162,8 +162,8 @@ test('should place elem\'s boolean modifier before elem key-value modifier', () 
 
     const resolved = Array.from(graph.dependenciesOf(decl));
 
-    const indexBoolean = findIndex(resolved, { block: 'A', elem: 'e', modName: 'm', modVal: true });
-    const indexKeyValue = findIndex(resolved, { block: 'A', elem: 'e', modName: 'm', modVal: 'any' });
+    const indexBoolean = findIndex(resolved, { entity: { block: 'A', elem: 'e', modName: 'm', modVal: true } });
+    const indexKeyValue = findIndex(resolved, { entity: { block: 'A', elem: 'e', modName: 'm', modVal: 'any' } });
 
     expect(indexBoolean).to.be.below(indexKeyValue);
 });

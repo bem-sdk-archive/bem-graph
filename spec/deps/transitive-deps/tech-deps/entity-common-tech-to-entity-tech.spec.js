@@ -23,7 +23,7 @@ test('should resolve transitive dependency', macro, {
     test: (t, graph) => {
         const decl = Array.from(graph.dependenciesOf({ block: 'A' }, 'css'));
 
-        expect(decl).to.not.contain({ entity: { block: 'C' }, tech: 'css' });
+        expect(decl).to.contain({ entity: { block: 'C' }, tech: 'css' });
     }
 });
 

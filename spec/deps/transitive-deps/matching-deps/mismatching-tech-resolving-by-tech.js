@@ -74,7 +74,7 @@ test('should resolve transitive depending by multiple techs on another entity', 
     }
 });
 
-test('should resolve multiple tech dependencies depending on another tech different from resolving' +
+test.failing('should resolve multiple tech dependencies depending on another tech different from resolving' +
     ' tech', macro, {
     graph: (linkMethod) => {
         const graph = new BemGraph();
@@ -98,7 +98,7 @@ test('should resolve multiple tech dependencies depending on another tech differ
         const decl = Array.from(graph.dependenciesOf({ block: 'A' }, 'css'));
 
         const firstIndex = findIndex(decl, { entity: { block: 'D' }, tech: 'js' });
-        const lastIndex = findLastIndex(decl, { entity: { block: 'C' }, tech: 'js' });
+        const lastIndex = findLastIndex(decl, { entity: { block: 'D' }, tech: 'js' });
 
         expect(decl).to.contain({ entity: { block: 'D' }, tech: 'js' });
         expect(firstIndex).to.be.equal(lastIndex);

@@ -18,7 +18,7 @@ test.failing('should prioritise decl order over recommended deps order', t => {
     const indexB = findIndex(decl, { entity: { block: 'B' } });
     const indexC = findIndex(decl, { entity: { block: 'C' } });
 
-    t.is(indexC < indexB);
+    t.true(indexC < indexB);
 });
 
 test('should save user order for unordered dependencies', t => {
@@ -34,7 +34,7 @@ test('should save user order for unordered dependencies', t => {
     const indexB = findIndex(decl, { entity: { block: 'B' } });
     const indexC = findIndex(decl, { entity: { block: 'C' } });
 
-    t.is(indexB < indexC);
+    t.true(indexB < indexC);
 });
 
 test('should save decl order when resolve ordered and unordered deps of another dependency', t => {
@@ -50,5 +50,5 @@ test('should save decl order when resolve ordered and unordered deps of another 
     const indexC = findIndex(decl, { entity: { block: 'C' } });
     const indexD = findIndex(decl, { entity: { block: 'D' } });
 
-    t.is(indexC < indexD);
+    t.true(indexC < indexD);
 });

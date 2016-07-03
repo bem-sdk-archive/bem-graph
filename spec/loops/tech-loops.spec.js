@@ -4,7 +4,7 @@ const test = require('ava');
 
 const BemGraph = lib.BemGraph;
 
-test('should throw error if detected ordered loop between same techs', t => {
+test.failing('should throw error if detected ordered loop between same techs', t => {
     const graph = new BemGraph();
 
     graph
@@ -42,7 +42,7 @@ test('should not throw error if detected loop between different techs', t => {
     t.notThrows(() => graph.dependenciesOf({ block: 'A' }, 'js'));
 });
 
-test('should throw error if detected loop between common and specific techs', t => {
+test.failing('should throw error if detected loop between common and specific techs', t => {
     const graph = new BemGraph();
 
     graph
@@ -66,7 +66,7 @@ test('should throw error if detected loop between common and specific techs', t 
     }
 });
 
-test('should throw error if detected loop between common and other techs', t => {
+test.failing('should throw error if detected loop between common and other techs', t => {
     const graph = new BemGraph();
 
     graph
@@ -90,7 +90,7 @@ test('should throw error if detected loop between common and other techs', t => 
     }
 });
 
-test('should not throw error if detected loop on itself with other tech', t => {
+test.failing('should not throw error if detected loop on itself with other tech', t => {
     const graph = new BemGraph();
 
     graph

@@ -19,8 +19,8 @@ test('should place ordered entity from decl before entity depending on it', () =
 
     const resolved = Array.from(graph.dependenciesOf(decl));
 
-    const indexA = findIndex(resolved, { block: 'A' });
-    const indexB = findIndex(resolved, { block: 'B' });
+    const indexA = findIndex(resolved, { entity: { block: 'A' } });
+    const indexB = findIndex(resolved, { entity: { block: 'B' } });
 
     expect(indexB).to.be.below(indexA);
 });
@@ -42,9 +42,9 @@ test('should place ordered entity from decl before several entities depending on
 
     const resolved = Array.from(graph.dependenciesOf(decl));
 
-    const indexA = findIndex(resolved, { block: 'A' });
-    const indexB = findIndex(resolved, { block: 'B' });
-    const indexC = findIndex(resolved, { block: 'C' });
+    const indexA = findIndex(resolved, { entity: { block: 'A' } });
+    const indexB = findIndex(resolved, { entity: { block: 'B' } });
+    const indexC = findIndex(resolved, { entity: { block: 'C' } });
 
     expect(indexC).to.be.below(indexA)
         .and.to.be.below(indexB);
@@ -58,8 +58,8 @@ test('should place ordered dependency before entity from decl depending on it', 
 
     const resolved = Array.from(graph.dependenciesOf({ block: 'A' }));
 
-    const indexA = findIndex(resolved, { block: 'A' });
-    const indexB = findIndex(resolved, { block: 'B' });
+    const indexA = findIndex(resolved, { entity: { block: 'A' } });
+    const indexB = findIndex(resolved, { entity: { block: 'B' } });
 
     expect(indexB).to.be.below(indexA);
 });
@@ -80,9 +80,9 @@ test('should place ordered dependency before multiple entities from decl dependi
 
     const resolved = Array.from(graph.dependenciesOf(decl));
 
-    const indexA = findIndex(resolved, { block: 'A' });
-    const indexB = findIndex(resolved, { block: 'B' });
-    const indexC = findIndex(resolved, { block: 'C' });
+    const indexA = findIndex(resolved, { entity: { block: 'A' } });
+    const indexB = findIndex(resolved, { entity: { block: 'B' } });
+    const indexC = findIndex(resolved, { entity: { block: 'C' } });
 
     expect(indexC).to.be.below(indexA)
         .and.to.be.below(indexB);
@@ -101,8 +101,8 @@ test('should keep decl ordering for entities unaffected by ordered dependency', 
 
     const resolved = Array.from(graph.dependenciesOf(decl));
 
-    const indexA = findIndex(resolved, { block: 'A' });
-    const indexB = findIndex(resolved, { block: 'B' });
+    const indexA = findIndex(resolved, { entity: { block: 'A' } });
+    const indexB = findIndex(resolved, { entity: { block: 'B' } });
 
     expect(indexA).to.be.below(indexB);
 });
@@ -118,8 +118,8 @@ test('should place ordered dependency before dependency depending on it', () => 
 
     const resolved = Array.from(graph.dependenciesOf({ block: 'A' }));
 
-    const indexB = findIndex(resolved, { block: 'B' });
-    const indexC = findIndex(resolved, { block: 'C' });
+    const indexB = findIndex(resolved, { entity: { block: 'B' } });
+    const indexC = findIndex(resolved, { entity: { block: 'C' } });
 
     expect(indexC).to.be.below(indexB);
 });
@@ -139,9 +139,9 @@ test('should place ordered dependency before several dependencies depending on i
 
     const resolved = Array.from(graph.dependenciesOf({ block: 'A' }));
 
-    const indexB = findIndex(resolved, { block: 'B' });
-    const indexC = findIndex(resolved, { block: 'C' });
-    const indexD = findIndex(resolved, { block: 'D' });
+    const indexB = findIndex(resolved, { entity: { block: 'B' } });
+    const indexC = findIndex(resolved, { entity: { block: 'C' } });
+    const indexD = findIndex(resolved, { entity: { block: 'D' } });
 
     expect(indexD).to.be.below(indexB)
         .and.to.be.below(indexC);
@@ -160,9 +160,9 @@ test('should place ordered dependency before entity from decl and another depend
 
     const resolved = Array.from(graph.dependenciesOf({ block: 'A' }));
 
-    const indexA = findIndex(resolved, { block: 'A' });
-    const indexB = findIndex(resolved, { block: 'B' });
-    const indexC = findIndex(resolved, { block: 'C' });
+    const indexA = findIndex(resolved, { entity: { block: 'A' } });
+    const indexB = findIndex(resolved, { entity: { block: 'B' } });
+    const indexC = findIndex(resolved, { entity: { block: 'C' } });
 
     expect(indexC).to.be.below(indexA)
         .and.to.be.below(indexB);

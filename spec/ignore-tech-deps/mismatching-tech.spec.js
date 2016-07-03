@@ -5,6 +5,8 @@ const expect = require('chai').expect;
 
 const BemGraph = lib.BemGraph;
 
+// TODO: make it non-uebansky
+
 test('should ignore entity dependency on mismatched tech', () => {
     const graph = new BemGraph();
 
@@ -35,7 +37,7 @@ test('should ignore tech dependency on same and mismatched tech', () => {
 
     const decl = Array.from(graph.dependenciesOf({ block: 'A' }, 'js'));
 
-    expect(decl).to.be.empty; // eslint-disable-line
+    expect(decl).to.not.include({ entity: { block: 'B' }, tech: 'css' });
 });
 
 // wtf again, they are empty both

@@ -16,12 +16,12 @@ test('should place ordered entity from decl before several entities depending on
         .vertex({ block: 'B' })
         .dependsOn({ block: 'C' });
 
-    const decl = graph.dependenciesOf([{ block: 'A' }, { block: 'B' }], 'js');
+    const decl = graph.dependenciesOf([{ block: 'A' }, { block: 'B' }]);
 
-    const indexA = findIndex(decl, { block: 'A' });
-    const indexB = findIndex(decl, { block: 'B' });
+    const indexA = findIndex(decl, { entity: { block: 'A' } });
+    const indexB = findIndex(decl, { entity: { block: 'B' } });
 
-    t.is(indexA < indexB);
+    t.true(indexA < indexB);
 });
 
 test('should keep decl ordering for entities unaffected by ordering', t => {
@@ -33,8 +33,8 @@ test('should keep decl ordering for entities unaffected by ordering', t => {
 
     const decl = graph.dependenciesOf([{ block: 'B' }, { block: 'C' }]);
 
-    const indexB = findIndex(decl, { block: 'B' });
-    const indexC = findIndex(decl, { block: 'C' });
+    const indexB = findIndex(decl, { entity: { block: 'B' } });
+    const indexC = findIndex(decl, { entity: { block: 'C' } });
 
-    t.is(indexB < indexC);
+    t.true(indexB < indexC);
 });

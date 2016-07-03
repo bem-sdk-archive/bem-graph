@@ -16,8 +16,8 @@ test('should keep the ordering described in deps', () => {
 
     const decl = Array.from(graph.dependenciesOf({ block: 'A' }));
 
-    const indexB = findIndex(decl, { block: 'B' });
-    const indexC = findIndex(decl, { block: 'C' });
+    const indexB = findIndex(decl, { entity: { block: 'B' } });
+    const indexC = findIndex(decl, { entity: { block: 'C' } });
 
     expect(indexB).to.be.below(indexC);
 });
@@ -36,8 +36,8 @@ test('should keep ordering for transitive dependencies', () => {
 
     const decl = Array.from(graph.dependenciesOf({ block: 'A' }));
 
-    const indexC = findIndex(decl, { block: 'C' });
-    const indexD = findIndex(decl, { block: 'D' });
+    const indexC = findIndex(decl, { entity: { block: 'C' } });
+    const indexD = findIndex(decl, { entity: { block: 'D' } });
 
     expect(indexC).to.be.below(indexD);
 });
@@ -60,8 +60,8 @@ test('should keep deps ordering if dependencies are unaffected by other ordering
 
     const decl = Array.from(graph.dependenciesOf({ block: 'A' }));
 
-    const indexB = findIndex(decl, { block: 'B' });
-    const indexC = findIndex(decl, { block: 'C' });
+    const indexB = findIndex(decl, { entity: { block: 'B' } });
+    const indexC = findIndex(decl, { entity: { block: 'C' } });
 
     expect(indexB).to.be.below(indexC);
 });
@@ -81,8 +81,8 @@ test('should keep deps ordering if dependencies are unaffected by explicit order
 
     const decl = Array.from(graph.dependenciesOf({ block: 'A' }));
 
-    const indexB = findIndex(decl, { block: 'B' });
-    const indexD = findIndex(decl, { block: 'D' });
+    const indexB = findIndex(decl, { entity: { block: 'B' } });
+    const indexD = findIndex(decl, { entity: { block: 'D' } });
 
     expect(indexB).to.be.below(indexD);
 });

@@ -2,7 +2,6 @@
 
 const test = require('ava');
 
-const lib = require('../..');
 const BemGraph = lib.BemGraph;
 
 test('should not throw error if detected unordered indirect loop', t => {

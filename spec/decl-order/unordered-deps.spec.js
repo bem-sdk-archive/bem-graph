@@ -2,9 +2,9 @@
 
 const test = require('ava');
 
-const lib = require('../../../..');
+
 const BemGraph = lib.BemGraph;
-const findIndex = lib.utils.findIndex;
+const findIndex = utils.findIndex;
 
 test('should keep the ordering described in decl', t => {
     const graph = new BemGraph();

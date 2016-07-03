@@ -3,7 +3,7 @@
 const test = require('ava');
 
 const BemGraph = require('../../lib/bem-graph');
-const findIndex = require('../../../lib/utils').findIndex;
+const findIndex = require('../../../utils').findIndex;
 
 test('should place ordered entity from decl before several entities depending on it', t => {
     const graph = new BemGraph();

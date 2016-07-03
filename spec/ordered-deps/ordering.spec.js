@@ -3,9 +3,8 @@
 const test = require('ava');
 const expect = require('chai').expect;
 
-const lib = require('../../../..');
 const BemGraph = lib.BemGraph;
-const findIndex = lib.utils.findIndex;
+const findIndex = utils.findIndex;
 
 test('should place ordered entity from decl before entity depending on it', () => {
     const graph = new BemGraph();

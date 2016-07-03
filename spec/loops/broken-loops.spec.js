@@ -2,7 +2,6 @@
 
 const test = require('ava');
 
-const lib = require('../..');
 const BemGraph = lib.BemGraph;
 
 test('should not throw error if detected ordered loop broken in the middle by unordered dependency', t => {

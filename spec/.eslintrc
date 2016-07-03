@@ -1,4 +1,1 @@
-extends: ../.eslintrc
-
-rules:
-  no-unexpected-multiline: 0
+extends: ../test/.eslintrc

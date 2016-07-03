@@ -3,9 +3,8 @@
 const test = require('ava');
 const expect = require('chai').expect;
 
-const lib = require('../../..');
 const BemGraph = lib.BemGraph;
-const findIndex = lib.utils.findIndex;
+const findIndex = utils.findIndex;
 
 test('should place block before its element', () => {
     const graph = new BemGraph();

@@ -3,7 +3,6 @@
 const test = require('ava');
 const expect = require('chai').expect;
 
-const lib = require('../../../lib');
 const BemGraph = lib.BemGraph;
 
 test('should ignore entity dependency on mismatched tech', () => {

@@ -2,7 +2,6 @@
 
 const test = require('ava');
 
-const lib = require('../../../..');
 const BemGraph = lib.BemGraph;
 
 test('should resolve ordered dependencies independently for each declaration entity', t => {

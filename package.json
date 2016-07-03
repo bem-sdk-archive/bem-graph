@@ -22,6 +22,7 @@
   "dependencies": {
     "bem-entity-name": "bem-sdk/bem-entity-name",
     "bem-naming": "1.0.1",
+    "es6-error": "^3.0.0",
     "hash-set": "1.0.0",
     "ho-iter": "blond/ho-iter",
     "spread-args": "^0.2.0"
@@ -36,11 +37,12 @@
     "sinon": "^1.17.4"
   },
   "scripts": {
-    "pretest": "eslint . && cd spec && eslint .",
+    "pretest": "eslint ./lib && cd spec && eslint . && cd ../test && eslint .",
     "test": "nyc ava",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "ava": {
+    "require": "./test/.ava.js",
     "files": [
       "spec/**/*.spec.js",
       "test/**/*.test.js"

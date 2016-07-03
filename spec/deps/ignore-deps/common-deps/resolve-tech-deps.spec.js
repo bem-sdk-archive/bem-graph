@@ -3,9 +3,8 @@
 const test = require('ava');
 const expect = require('chai').expect;
 
-const lib = require('../../../../lib');
 const BemGraph = lib.BemGraph;
-const macro = lib.utils.depsMacro;
+const macro = utils.depsMacro;
 
 test('should not include entity if no entity from decl depends on it', macro, {
     graph: () => {

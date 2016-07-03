@@ -3,9 +3,8 @@
 const test = require('ava');
 const expect = require('chai').expect;
 
-const lib = require('../../../..');
 const BemGraph = lib.BemGraph;
-const macro = lib.utils.depsMacro;
+const macro = utils.depsMacro;
 
 test('should resolve transitive dependency', macro, {
     graph: (linkMethod) => {

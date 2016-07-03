@@ -3,11 +3,10 @@
 const test = require('ava');
 const expect = require('chai').expect;
 
-const lib = require('../../../..');
 const BemGraph = lib.BemGraph;
-const macro = lib.utils.depsMacro;
-const findIndex = lib.utils.findIndex;
-const findLastIndex = lib.utils.findLastIndex;
+const macro = utils.depsMacro;
+const findIndex = utils.findIndex;
+const findLastIndex = utils.findLastIndex;
 
 test('should resolve entity depending on another entity', macro, {
     graph: (linkMethod) => {

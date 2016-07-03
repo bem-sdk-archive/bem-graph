@@ -2,7 +2,6 @@
 
 const test = require('ava');
 
-const lib = require('../..');
 const BemGraph = lib.BemGraph;
 
 test('should throw error if detected ordered loop between same techs', t => {

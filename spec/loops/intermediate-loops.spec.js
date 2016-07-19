@@ -4,7 +4,7 @@ const test = require('ava');
 
 const BemGraph = lib.BemGraph;
 
-test.failing('should not throw error if detected unordered intermediate loop', t => {
+test('should not throw error if detected unordered intermediate loop', t => {
     const graph = new BemGraph();
 
     graph
@@ -22,7 +22,7 @@ test.failing('should not throw error if detected unordered intermediate loop', t
     t.notThrows(() => graph.dependenciesOf({ block: 'A' }));
 });
 
-test.failing('should not throw error if detected unordered intermediate loop with ordered part', t => {
+test('should not throw error if detected unordered intermediate loop with ordered part', t => {
     const graph = new BemGraph();
 
     graph
@@ -40,7 +40,7 @@ test.failing('should not throw error if detected unordered intermediate loop wit
     t.notThrows(() => graph.dependenciesOf({ block: 'A' }));
 });
 
-test.failing('should throw error if detected ordered intermediate loop', t => {
+test('should throw error if detected ordered intermediate loop', t => {
     const graph = new BemGraph();
 
     graph
@@ -61,6 +61,7 @@ test.failing('should throw error if detected ordered intermediate loop', t => {
         graph.dependenciesOf({ block: 'A' });
     } catch (error) {
         t.deepEqual(error.loop, [
+            { entity: { block: 'A' } }, // ?
             { entity: { block: 'B' } },
             { entity: { block: 'C' } },
             { entity: { block: 'B' } }

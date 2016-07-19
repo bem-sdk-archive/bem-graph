@@ -6,7 +6,7 @@ const expect = require('chai').expect;
 const BemGraph = lib.BemGraph;
 const macro = utils.depsMacro;
 
-test.failing('should include entity once if entity depends on a', macro, {
+test('should include entity once if entity depends on a', macro, {
     graph: (linkMethod) => {
         const graph = new BemGraph();
 

@@ -74,7 +74,7 @@ test('should resolve transitive depending by multiple techs on another entity', 
     }
 });
 
-test.failing('should resolve multiple tech dependencies depending on another tech different from resolving' +
+test('should resolve multiple tech dependencies depending on another tech different from resolving' +
     ' tech', macro, {
     graph: (linkMethod) => {
         const graph = new BemGraph();

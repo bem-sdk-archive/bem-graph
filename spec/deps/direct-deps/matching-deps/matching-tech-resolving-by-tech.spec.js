@@ -62,7 +62,7 @@ test('should resolve entity depending on multiple entities', macro, {
     }
 });
 
-test.failing('should include entity to result once if multiple entities depend on this entity', macro, {
+test('should include entity to result once if multiple entities depend on this entity', macro, {
     graph: (linkMethod) => {
         const graph = new BemGraph();
 

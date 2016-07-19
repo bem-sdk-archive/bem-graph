@@ -4,7 +4,7 @@ const test = require('ava');
 
 const BemGraph = lib.BemGraph;
 
-test.failing('should throw error if detected ordered loop between same techs', t => {
+test('should throw error if detected ordered loop between same techs', t => {
     const graph = new BemGraph();
 
     graph
@@ -21,9 +21,9 @@ test.failing('should throw error if detected ordered loop between same techs', t
         graph.dependenciesOf({ block: 'A' }, 'css');
     } catch (error) {
         t.deepEqual(error.loop, [
-            { entity: { block: 'A' } },
-            { entity: { block: 'B' } },
-            { entity: { block: 'A' } }
+            { entity: { block: 'A' }/*, tech: 'css'*/ },
+            { entity: { block: 'B' }, tech: 'css' },
+            { entity: { block: 'A' }, tech: 'css' }
         ]);
     }
 });
@@ -42,7 +42,7 @@ test('should not throw error if detected loop between different techs', t => {
     t.notThrows(() => graph.dependenciesOf({ block: 'A' }, 'js'));
 });
 
-test.failing('should throw error if detected loop between common and specific techs', t => {
+test('should throw error if detected loop between common and specific techs', t => {
     const graph = new BemGraph();
 
     graph
@@ -56,41 +56,41 @@ test.failing('should throw error if detected loop between common and specific te
     t.plan(1);
 
     try {
-        graph.dependenciesOf({ block: 'A' })
+        graph.dependenciesOf({ block: 'A' });
     } catch (error) {
         t.deepEqual(error.loop, [
             { entity: { block: 'A' } },
             { entity: { block: 'B' } },
-            { entity: { block: 'A' } }
+            { entity: { block: 'A' }, tech: 'css' }
         ]);
     }
 });
 
-test.failing('should throw error if detected loop between common and other techs', t => {
+test('should throw error if detected loop between common and other techs', t => {
     const graph = new BemGraph();
 
     graph
         .vertex({ block: 'A' })
-        .linkWith({ block: 'B' });
+        .dependsOn({ block: 'B' });
 
     graph
         .vertex({ block: 'B' })
-        .linkWith({ block: 'A' }, 'css');
+        .dependsOn({ block: 'A' }, 'css');
 
     t.plan(1);
 
     try {
-        graph.dependenciesOf({ block: 'A' }, 'css')
+        graph.dependenciesOf({ block: 'A' }, 'css');
     } catch (error) {
         t.deepEqual(error.loop, [
             { entity: { block: 'A' } },
             { entity: { block: 'B' } },
-            { entity: { block: 'A' } }
+            { entity: { block: 'A' }, tech: 'css' }
         ]);
     }
 });
 
-test.failing('should not throw error if detected loop on itself with other tech', t => {
+test('should not throw error if detected loop on itself with other tech', t => {
     const graph = new BemGraph();
 
     graph

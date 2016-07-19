@@ -89,7 +89,7 @@ test('should resolve tech dependency depending on tech different from resolving 
     }
 });
 
-test.failing('should include tech to result once if tech of multiple entities depends on this tech and this tech is' +
+test('should include tech to result once if tech of multiple entities depends on this tech and this tech is' +
     ' not matching with resolving tech', macro, {
         graph: (linkMethod) => {
             const graph = new BemGraph();

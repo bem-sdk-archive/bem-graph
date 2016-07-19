@@ -20,7 +20,7 @@
     "lib/**"
   ],
   "dependencies": {
-    "bem-entity-name": "bem-sdk/bem-entity-name",
+    "bem-entity-name": "bem-sdk/bem-entity-name#3f8177c",
     "bem-naming": "1.0.1",
     "es6-error": "3.0.0",
     "hash-set": "1.0.0",

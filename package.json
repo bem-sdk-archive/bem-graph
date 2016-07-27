@@ -20,11 +20,11 @@
     "lib/**"
   ],
   "dependencies": {
-    "bem-entity-name": "bem-sdk/bem-entity-name#3f8177c",
+    "bem-entity-name": "0.0.1",
     "bem-naming": "1.0.1",
     "es6-error": "3.0.0",
     "hash-set": "1.0.0",
-    "ho-iter": "blond/ho-iter#wip",
+    "ho-iter": "blond/ho-iter#f64a9b2af79d1862458d1ac47dce3b4ec2814803",
     "spread-args": "0.2.0"
   },
   "devDependencies": {

@@ -24,15 +24,15 @@
     "bem-naming": "1.0.1",
     "es6-error": "3.0.0",
     "hash-set": "1.0.0",
-    "ho-iter": "0.1.0",
+    "ho-iter": "blond/ho-iter#wip",
     "spread-args": "0.2.0"
   },
   "devDependencies": {
     "ava": "^0.15.2",
     "chai": "^3.5.0",
     "coveralls": "^2.11.9",
-    "eslint": "^3.0.0",
-    "eslint-config-pedant": "^0.6.0",
+    "eslint": "^3.2.2",
+    "eslint-config-pedant": "^0.7.0",
     "nyc": "^6.6.1",
     "sinon": "^1.17.4"
   },

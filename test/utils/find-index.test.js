@@ -22,7 +22,7 @@ test('should find block', t => {
 });
 
 test('should find modifier of block', t => {
-    const entity = { entity:{ block: 'block', modName: 'mod', modVal: 'val' } };
+    const entity = { entity:{ block: 'block', mod: { name: 'mod', val: 'val' } } };
     const decl = [entity];
 
     t.is(findIndex(decl, entity), 0);
@@ -36,7 +36,7 @@ test('should find element', t => {
 });
 
 test('should find modifier of element', t => {
-    const entity = { entity: { block: 'block', elem: 'elem', modName: 'mod', modVal: 'val' } };
+    const entity = { entity: { block: 'block', elem: 'elem', mod: { name: 'mod', val: 'val' } } };
     const decl = [entity];
 
     t.is(findIndex(decl, entity), 0);

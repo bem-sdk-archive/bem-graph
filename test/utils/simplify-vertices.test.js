@@ -9,10 +9,10 @@ test('should simplify vertex', t => {
     t.deepEqual(simplifyVertices([
         createVertex({block: 'a'}),
         createVertex({block: 'b', elem: 'e'}),
-        createVertex({block: 'c', modName: 'm', modVal: true})
+        createVertex({block: 'c', mod: 'm'})
     ]), [
         {entity: {block: 'a'}},
         {entity: {block: 'b', elem: 'e'}},
-        {entity: {block: 'c', mod: {name: 'm', val: true}}}
+        {entity: {block: 'c', mod: { name: 'm', val: true }}}
     ]);
 });

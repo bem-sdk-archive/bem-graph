@@ -26,13 +26,13 @@ test('should prioritise ordered dependency over block - boolean modifier natural
 
     graph
         .vertex({ block: 'A' })
-        .dependsOn({ block: 'A', modName: 'm', modVal: true });
+        .dependsOn({ block: 'A', mod: 'm' });
 
     graph.naturalize();
 
-    const decl = graph.dependenciesOf([{ block: 'A' }, { block: 'A', modName: 'm', modVal: true }]);
+    const decl = graph.dependenciesOf([{ block: 'A' }, { block: 'A', mod: 'm' }]);
     const indexBlock = findIndex(decl, { entity: { block: 'A' } });
-    const indexModifier = findIndex(decl, { entity: { block: 'A', modName: 'm', modVal: true } });
+    const indexModifier = findIndex(decl, { entity: { block: 'A', mod: 'm' } });
 
     t.true(indexModifier < indexBlock);
 });
@@ -42,13 +42,13 @@ test('should prioritise ordered dependency over block - key-value modifier natur
 
     graph
         .vertex({ block: 'A' })
-        .dependsOn({ block: 'A', modName: 'm', modVal: 'val' });
+        .dependsOn({ block: 'A', mod: { name: 'm', val: 'val' } });
 
     graph.naturalize();
 
-    const decl = graph.dependenciesOf([{ block: 'A' }, { block: 'A', modName: 'm', modVal: 'val' }]);
+    const decl = graph.dependenciesOf([{ block: 'A' }, { block: 'A', mod: { name: 'm', val: 'val' } }]);
     const indexBlock = findIndex(decl, { entity: { block: 'A' } });
-    const indexModifier = findIndex(decl, { entity: { block: 'A', modName: 'm', modVal: 'val' } });
+    const indexModifier = findIndex(decl, { entity: { block: 'A', mod: { name: 'm', val: 'val' } } });
 
     t.true(indexModifier < indexBlock);
 });
@@ -58,16 +58,16 @@ test('should prioritise ordered dependency over element - element boolean modifi
 
     graph
         .vertex({ block: 'A', elem: 'e' })
-        .dependsOn({ block: 'A', elem: 'e', modName: 'm', modVal: true });
+        .dependsOn({ block: 'A', elem: 'e', mod: 'm' });
 
     graph.naturalize();
 
     const decl = graph.dependenciesOf([
         { block: 'A', elem: 'e' },
-        { block: 'A', elem: 'e', modName: 'm', modVal: true }
+        { block: 'A', elem: 'e', mod: 'm' }
     ]);
     const indexElement = findIndex(decl, { entity: { block: 'A', elem: 'e' } });
-    const indexModifier = findIndex(decl, { entity: { block: 'A', elem: 'e', modName: 'm', modVal: true } });
+    const indexModifier = findIndex(decl, { entity: { block: 'A', elem: 'e', mod: 'm' } });
 
     t.true(indexModifier < indexElement);
 });
@@ -77,16 +77,16 @@ test('should prioritise ordered dependency over element - element key-value modi
 
     graph
         .vertex({ block: 'A', elem: 'e' })
-        .dependsOn({ block: 'A', elem: 'e', modName: 'm', modVal: 'val' });
+        .dependsOn({ block: 'A', elem: 'e', mod: { name: 'm', val: 'val' } });
 
     graph.naturalize();
 
     const decl = graph.dependenciesOf([
         { block: 'A', elem: 'e' },
-        { block: 'A', elem: 'e', modName: 'm', modVal: 'val' }
+        { block: 'A', elem: 'e', mod: { name: 'm', val: 'val' } }
     ]);
     const indexElement = findIndex(decl, { entity: { block: 'A', elem: 'e' } });
-    const indexModifier = findIndex(decl, { entity: { block: 'A', elem: 'e', modName: 'm', modVal: 'val' } });
+    const indexModifier = findIndex(decl, { entity: { block: 'A', elem: 'e', mod: { name: 'm', val: 'val' } } });
 
     t.true(indexModifier < indexElement);
 });
@@ -95,17 +95,18 @@ test('should prioritise ordered dependency over boolean modifier - key-value mod
     const graph = new BemGraph();
 
     graph
-        .vertex({ block: 'A', modName: 'm', modVal: true })
-        .dependsOn({ block: 'A', modName: 'm', modVal: 'val' });
+        .vertex({ block: 'A', mod: 'm' })
+        .dependsOn({ block: 'A', mod: 'm' });
 
     graph.naturalize();
 
     const decl = graph.dependenciesOf([
-        { block: 'A', modName: 'm', modVal: true },
-        { block: 'A', modName: 'm', modVal: 'val' }
+        { block: 'A', mod: 'm' },
+        { block: 'A', mod: { name: 'm', val: 'val' } }
     ]);
-    const indexBoolean = findIndex(decl, { entity: { block: 'A', modName: 'm', modVal: true } });
-    const indexKeyValue = findIndex(decl, { entity: { block: 'A', modName: 'm', modVal: 'val' } });
+    console.log(decl);
+    const indexBoolean = findIndex(decl, { entity: { block: 'A', mod: { name: 'm', val: true } } });
+    const indexKeyValue = findIndex(decl, { entity: { block: 'A', mod: { name: 'm', val: 'val' } } });
 
     t.true(indexKeyValue < indexBoolean);
 });

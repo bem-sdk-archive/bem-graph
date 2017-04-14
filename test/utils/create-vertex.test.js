@@ -10,12 +10,12 @@ test('should create block vertex', t => {
 
 test('should create block with true mod', t => {
     t.is(v('a_m').id, 'a_m');
-    t.is(v({block: 'a', modName: 'm', modVal: true}).id, 'a_m');
+    t.is(v({block: 'a', mod: { name: 'm', val: true}}).id, 'a_m');
 });
 
 test('should create block with usual mod', t => {
     t.is(v('a_m_v').id, 'a_m_v');
-    t.is(v({block: 'a', modName: 'm', modVal: 'v'}).id, 'a_m_v');
+    t.is(v({block: 'a', mod: { name: 'm', val: 'v'}}).id, 'a_m_v');
 });
 
 test('should create elem vertex', t => {
@@ -25,12 +25,12 @@ test('should create elem vertex', t => {
 
 test('should create elem with true mod', t => {
     t.is(v('a__e_m').id, 'a__e_m');
-    t.is(v({block: 'a', elem: 'e', modName: 'm', modVal: true}).id, 'a__e_m');
+    t.is(v({block: 'a', elem: 'e', mod: { name: 'm', val: true}}).id, 'a__e_m');
 });
 
 test('should create elem with usual mod', t => {
     t.is(v('a__e_m_v').id, 'a__e_m_v');
-    t.is(v({block: 'a', elem: 'e', modName: 'm', modVal: 'v'}).id, 'a__e_m_v');
+    t.is(v({block: 'a', elem: 'e', mod: { name: 'm', val: 'v'}}).id, 'a__e_m_v');
 });
 
 test('should create block with tech vertex', t => {
